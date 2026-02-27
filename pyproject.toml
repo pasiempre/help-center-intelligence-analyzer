@@ -7,7 +7,7 @@ name = "macro-helpcenter-intelligence"
 version = "0.1.0"
 description = "Analyze customer support macros to identify effectiveness, redundancies, and optimization opportunities"
 authors = [
-    {name = "Your Name", email = "your.email@example.com"}
+    {name = "Hector Carbajal", email = "hectorhernadnez9980@gmail.com"}
 ]
 readme = "README.md"
 requires-python = ">=3.10"
