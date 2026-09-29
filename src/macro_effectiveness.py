@@ -207,7 +207,7 @@ def score_all_macros(
     if save:
         logger.info(f"Saving macro scores to {MACRO_SCORES_FILE}...")
         macro_scores.to_csv(MACRO_SCORES_FILE, index=False)
-        logger.info("✓ Macro scoring complete!")
+        logger.info("Macro scoring complete!")
 
     # Log summary
     logger.info("Macro Effectiveness Summary:")

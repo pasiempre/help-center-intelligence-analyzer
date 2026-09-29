@@ -410,7 +410,7 @@ def generate_all_data(
         macros_df.to_csv(RAW_MACROS_FILE, index=False)
         tickets_df.to_csv(RAW_TICKETS_FILE, index=False)
         macro_usage_df.to_csv(RAW_MACRO_USAGE_FILE, index=False)
-        logger.info("✓ Data generation complete!")
+        logger.info("Data generation complete!")
 
     return macros_df, tickets_df, macro_usage_df
 

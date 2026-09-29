@@ -163,5 +163,5 @@ KMEANS_MODEL_FILE = MODELS_DIR / "kmeans_model.pkl"
 # ============================================================================
 
 STREAMLIT_PAGE_TITLE = "Macro Intelligence Analyzer"
-STREAMLIT_PAGE_ICON = "📊"
+STREAMLIT_PAGE_ICON = None
 STREAMLIT_LAYOUT = "wide"

@@ -242,7 +242,7 @@ def cluster_all_macros(
         with open(KMEANS_MODEL_FILE, "wb") as f:
             pickle.dump(model, f)
 
-        logger.info("✓ Clustering complete!")
+        logger.info("Clustering complete!")
 
     # Log summary
     logger.info("Cluster Summary:")

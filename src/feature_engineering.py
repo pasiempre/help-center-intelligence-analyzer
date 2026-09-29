@@ -182,7 +182,7 @@ def engineer_all_features(
         logger.info(f"Saving feature sets to {TICKETS_FEATURES_FILE.parent}...")
         tickets_features.to_csv(TICKETS_FEATURES_FILE, index=False)
         macro_features.to_csv(MACRO_FEATURES_BASE_FILE, index=False)
-        logger.info("✓ Feature engineering complete!")
+        logger.info("Feature engineering complete!")
 
     logger.info(f"  Ticket features shape: {tickets_features.shape}")
     logger.info(f"  Macro features shape: {macro_features.shape}")

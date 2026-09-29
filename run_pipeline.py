@@ -53,11 +53,11 @@ def run_step(step_name: str, func, *args, **kwargs):
     try:
         result = func(*args, **kwargs)
         elapsed = time.time() - start_time
-        logger.info(f"✅ COMPLETED: {step_name} ({elapsed:.2f}s)")
+        logger.info(f"COMPLETED: {step_name} ({elapsed:.2f}s)")
         return result
     except Exception as e:
         elapsed = time.time() - start_time
-        logger.error(f"❌ FAILED: {step_name} ({elapsed:.2f}s)")
+        logger.error(f"FAILED: {step_name} ({elapsed:.2f}s)")
         logger.error(f"Error: {e}")
         raise
 
@@ -128,7 +128,7 @@ def run_full_pipeline(
     """
     total_start = time.time()
     
-    logger.info("🚀 Starting Macro Help-Center Intelligence Analyzer Pipeline")
+    logger.info("Starting Macro Help-Center Intelligence Analyzer Pipeline")
     logger.info(f"   Tickets: {num_tickets:,} | Macros: {num_macros}")
     
     # Step 1: Data Generation
@@ -143,7 +143,7 @@ def run_full_pipeline(
         if not check_data_exists():
             logger.error("Cannot skip generation - no data exists!")
             sys.exit(1)
-        logger.info("⏭️  Skipping data generation (using existing data)")
+        logger.info("Skipping data generation (using existing data)")
     
     # Step 2: Data Cleaning
     run_step("Data Cleaning", run_data_cleaning)
@@ -164,7 +164,7 @@ def run_full_pipeline(
     total_elapsed = time.time() - total_start
     logger.info("")
     logger.info("=" * 60)
-    logger.info(f"🎉 PIPELINE COMPLETE! Total time: {total_elapsed:.2f}s")
+    logger.info(f"PIPELINE COMPLETE! Total time: {total_elapsed:.2f}s")
     logger.info("=" * 60)
     logger.info("")
     logger.info("Next steps:")

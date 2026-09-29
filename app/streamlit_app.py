@@ -285,14 +285,14 @@ def create_excel_export(macro_clusters, tickets, agent_metrics, redundant_pairs)
 
 def main():
     """Main Streamlit app."""
-    st.title("📊 Macro Help-Center Intelligence Analyzer")
+    st.title("Macro Help-Center Intelligence Analyzer")
     st.markdown("*Analyze macro effectiveness, identify redundancies, and optimize your support content*")
 
     # Load data
     try:
         macro_clusters, cluster_summary, tickets, report_text, macro_usage = load_data()
     except FileNotFoundError as e:
-        st.error(f"❌ Data files not found: {e}")
+        st.error(f"Data files not found: {e}")
         st.info("Please run the data pipeline first: `python run_pipeline.py`")
         return
 
@@ -303,13 +303,13 @@ def main():
 
     # Tabs
     tab1, tab2, tab3, tab4, tab5, tab6, tab7 = st.tabs([
-        "📈 Overview",
-        "🔍 Macro Explorer",
-        "🎯 Topic Clusters",
-        "👥 Agent Analysis",
-        "🔄 Redundancy Detection",
-        "📅 Time Trends",
-        "📥 Export & Reports"
+        "Overview",
+        "Macro Explorer",
+        "Topic Clusters",
+        "Agent Analysis",
+        "Redundancy Detection",
+        "Time Trends",
+        "Export & Reports"
     ])
 
     # =========== TAB 1: OVERVIEW ===========
@@ -531,7 +531,7 @@ def main():
         # Consolidation candidates
         consolidation = cluster_summary[cluster_summary["consolidation_candidate"]]
         if len(consolidation) > 0:
-            st.warning(f"⚠️ {len(consolidation)} clusters identified as consolidation candidates")
+            st.warning(f"{len(consolidation)} clusters identified as consolidation candidates")
 
     # =========== TAB 4: AGENT ANALYSIS ===========
     with tab4:
@@ -603,9 +603,9 @@ def main():
         st.header("Redundancy Detection")
 
         if redundant_pairs.empty:
-            st.success("✅ No highly similar macro pairs found above threshold")
+            st.success("No highly similar macro pairs found above threshold")
         else:
-            st.warning(f"⚠️ Found {len(redundant_pairs)} potentially redundant macro pairs")
+            st.warning(f"Found {len(redundant_pairs)} potentially redundant macro pairs")
 
             # Threshold slider
             threshold = st.slider("Similarity Threshold", 0.5, 1.0, 0.8, 0.05)
@@ -654,9 +654,9 @@ def main():
 
                 # Recommendation
                 if macro_a_detail['macro_effectiveness_index'] > macro_b_detail['macro_effectiveness_index']:
-                    st.info(f"💡 **Recommendation**: Keep '{macro_a_detail['macro_name']}' (higher effectiveness)")
+                    st.info(f"**Recommendation**: Keep '{macro_a_detail['macro_name']}' (higher effectiveness)")
                 else:
-                    st.info(f"💡 **Recommendation**: Keep '{macro_b_detail['macro_name']}' (higher effectiveness)")
+                    st.info(f"**Recommendation**: Keep '{macro_b_detail['macro_name']}' (higher effectiveness)")
 
     # =========== TAB 6: TIME TRENDS ===========
     with tab6:
@@ -736,21 +736,21 @@ def main():
         col1, col2 = st.columns(2)
 
         with col1:
-            st.subheader("📊 Excel Export")
+            st.subheader("Excel Export")
             st.write("Download comprehensive Excel report with multiple sheets")
 
             if st.button("Generate Excel Report", type="primary"):
                 with st.spinner("Generating Excel..."):
                     excel_data = create_excel_export(macro_clusters, tickets, agent_metrics, redundant_pairs)
                     st.download_button(
-                        label="📥 Download Excel",
+                        label="Download Excel",
                         data=excel_data,
                         file_name=f"macro_analysis_{datetime.now().strftime('%Y%m%d')}.xlsx",
                         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                     )
 
         with col2:
-            st.subheader("📝 Text Report")
+            st.subheader("Text Report")
             st.text_area("Evaluation Report", report_text, height=300)
 
         st.markdown("---")
@@ -780,7 +780,7 @@ def main():
 
         underused_gems = macro_clusters[macro_clusters["macro_category"] == "Underused Gem"]
         if len(underused_gems) > 0:
-            with st.expander(f"✅ Promote {len(underused_gems)} Underused High-Impact Macros"):
+            with st.expander(f"Promote {len(underused_gems)} Underused High-Impact Macros"):
                 st.dataframe(
                     underused_gems[["macro_id", "macro_name", "macro_effectiveness_index", "usage_count"]]
                     .sort_values("macro_effectiveness_index", ascending=False)
@@ -791,7 +791,7 @@ def main():
             & (macro_clusters["has_sufficient_usage"])
         ]
         if len(low_effectiveness) > 0:
-            with st.expander(f"⚠️ Rewrite {len(low_effectiveness)} Low Effectiveness Macros"):
+            with st.expander(f"Rewrite {len(low_effectiveness)} Low Effectiveness Macros"):
                 st.dataframe(
                     low_effectiveness[["macro_id", "macro_name", "macro_effectiveness_index", "avg_csat"]]
                     .sort_values("macro_effectiveness_index")
@@ -799,7 +799,7 @@ def main():
 
         unused = macro_clusters[macro_clusters["usage_count"] == 0]
         if len(unused) > 0:
-            with st.expander(f"🗑️ Archive {len(unused)} Unused Macros"):
+            with st.expander(f"Archive {len(unused)} Unused Macros"):
                 st.dataframe(unused[["macro_id", "macro_name", "category"]])
 
 

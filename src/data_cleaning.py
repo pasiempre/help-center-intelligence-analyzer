@@ -187,7 +187,7 @@ def clean_all_data(
         tickets_df.to_csv(INTERIM_TICKETS_FILE, index=False)
         macros_df.to_csv(INTERIM_MACROS_FILE, index=False)
         macro_usage_df.to_csv(INTERIM_MACRO_USAGE_FILE, index=False)
-        logger.info("✓ Data cleaning complete!")
+        logger.info("Data cleaning complete!")
 
     logger.info(f"  Tickets: {len(tickets_df):,}")
     logger.info(f"  Macros: {len(macros_df):,}")

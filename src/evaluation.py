@@ -52,7 +52,7 @@ def generate_evaluation_report(
         ]
     )
 
-    report_lines.append("📊 MACRO LANDSCAPE OVERVIEW")
+    report_lines.append("MACRO LANDSCAPE OVERVIEW")
     report_lines.append("-" * 80)
     report_lines.append(f"Total macros: {total_macros}")
     report_lines.append(f"Active macros: {active_macros}")
@@ -69,7 +69,7 @@ def generate_evaluation_report(
         macro_clusters_df[macro_clusters_df["macro_effectiveness_index"] < 25]
     )
 
-    report_lines.append("🎯 EFFECTIVENESS DISTRIBUTION")
+    report_lines.append("EFFECTIVENESS DISTRIBUTION")
     report_lines.append("-" * 80)
     report_lines.append(f"Average effectiveness index: {avg_effectiveness:.1f}/100")
     report_lines.append(f"High impact macros (≥75): {high_impact}")
@@ -77,7 +77,7 @@ def generate_evaluation_report(
     report_lines.append("")
 
     # Top performing macros
-    report_lines.append("⭐ TOP 10 MACROS BY EFFECTIVENESS")
+    report_lines.append("TOP 10 MACROS BY EFFECTIVENESS")
     report_lines.append("-" * 80)
     top_10 = macro_clusters_df.nlargest(10, "macro_effectiveness_index")[
         ["macro_id", "macro_name", "macro_effectiveness_index", "usage_count", "avg_csat"]
@@ -90,7 +90,7 @@ def generate_evaluation_report(
     report_lines.append("")
 
     # Bottom performing macros
-    report_lines.append("⚠️  BOTTOM 10 MACROS BY EFFECTIVENESS")
+    report_lines.append("BOTTOM 10 MACROS BY EFFECTIVENESS")
     report_lines.append("-" * 80)
     bottom_10 = macro_clusters_df[macro_clusters_df["has_sufficient_usage"]].nsmallest(
         10, "macro_effectiveness_index"
@@ -103,7 +103,7 @@ def generate_evaluation_report(
     report_lines.append("")
 
     # Underused gems
-    report_lines.append("💎 UNDERUSED GEMS (High effectiveness, low usage)")
+    report_lines.append("UNDERUSED GEMS (High effectiveness, low usage)")
     report_lines.append("-" * 80)
     underused_gems = macro_clusters_df[
         macro_clusters_df["macro_category"] == "Underused Gem"
@@ -118,7 +118,7 @@ def generate_evaluation_report(
             )
         report_lines.append("")
         report_lines.append(
-            f"💡 RECOMMENDATION: Promote these {len(underused_gems)} high-performing macros "
+            f"RECOMMENDATION: Promote these {len(underused_gems)} high-performing macros "
             "to increase their usage."
         )
     else:
@@ -126,7 +126,7 @@ def generate_evaluation_report(
     report_lines.append("")
 
     # Cluster analysis
-    report_lines.append("🔍 TOPIC CLUSTER ANALYSIS")
+    report_lines.append("TOPIC CLUSTER ANALYSIS")
     report_lines.append("-" * 80)
     for _, cluster in cluster_summary_df.iterrows():
         report_lines.append(
@@ -142,7 +142,7 @@ def generate_evaluation_report(
         cluster_summary_df["consolidation_candidate"]
     ]
     if len(consolidation_clusters) > 0:
-        report_lines.append("🔧 CONSOLIDATION OPPORTUNITIES")
+        report_lines.append("CONSOLIDATION OPPORTUNITIES")
         report_lines.append("-" * 80)
         for _, cluster in consolidation_clusters.iterrows():
             report_lines.append(
@@ -153,7 +153,7 @@ def generate_evaluation_report(
         report_lines.append("")
 
     # Recommendations
-    report_lines.append("📋 KEY RECOMMENDATIONS")
+    report_lines.append("KEY RECOMMENDATIONS")
     report_lines.append("-" * 80)
 
     if unused_macros > 0:
@@ -212,7 +212,7 @@ def evaluate_all(
         logger.info(f"Saving report to {EVALUATION_REPORT_FILE}...")
         with open(EVALUATION_REPORT_FILE, "w") as f:
             f.write(report)
-        logger.info("✓ Evaluation complete!")
+        logger.info("Evaluation complete!")
 
     # Log key findings
     total_macros = len(macro_clusters)

@@ -102,11 +102,11 @@ def compute_macro_usage_trends(
         previous = usage_pivot[week_cols[-4:-2]].sum(axis=1)
         usage_pivot["trend"] = (recent - previous) / (previous + 1)
         usage_pivot["trend_direction"] = usage_pivot["trend"].apply(
-            lambda x: "📈 Rising" if x > 0.1 else ("📉 Declining" if x < -0.1 else "➡️ Stable")
+            lambda x: "Rising" if x > 0.1 else ("Declining" if x < -0.1 else "Stable")
         )
     else:
         usage_pivot["trend"] = 0
-        usage_pivot["trend_direction"] = "➡️ Stable"
+        usage_pivot["trend_direction"] = "Stable"
 
     return usage_pivot
 
